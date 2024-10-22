@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import { TextInput, Button, Card , IconButton} from 'react-native-paper'
 import { useState } from 'react';
 
-function Places() {
+function Places({navigation}) {
     const [address, setAddress] = useState("");
     const [testAddress, setTestAddress] = useState([{id: 1, address: "Asemakuja 2", city:"Espoo"},{id: 2, address: "Mannerheimintie 10", city:"Helsinki"}]);
 
@@ -41,7 +41,9 @@ function Places() {
                       iconColor="red"
                       icon="trash-can"
                     //   onPress={() => handleDelete(address)}
+                        onPress={()=> navigation.navigate("Map")}
                       />
+                    
                  )}/>
                  
               </Card.Content >

@@ -4,19 +4,28 @@ import { PaperProvider } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Bar from './src/Bar';
 import Places from './src/Places';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
+
+
   return (
     <PaperProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-        <StatusBar style="light" />
-        <View style={styles.container}>
-          <Bar />
-          <Places/>
-          
-          <StatusBar style="auto" />
-        </View>
-      </SafeAreaView>
+      <NavigationContainer>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+          <StatusBar style="light" />
+            <Stack.Navigator>
+              <Stack.Screen name="Places" component={Places} options={{title: "palces "}} />
+              <Stack.Screen name="Map" component={Map} options={{title: "map "}} />
+            </Stack.Navigator>
+            <StatusBar style="auto" />
+        </SafeAreaView>
+      </NavigationContainer>
     </PaperProvider>
   );
 }
