@@ -12,8 +12,6 @@ function Places() {
         console.log(testAddress[1].address);
     }
     const handleDelete = (address) => {
-        // const itemRef = ref(database, `items/${item.id}`);
-        // remove(itemRef);
         console.log("poista", address);
     }
     
@@ -29,13 +27,14 @@ function Places() {
     <Button mode="contained" icon="content-save" title="Save" onPress={handleSave} >Save</Button>
 
     <FlatList
+        style={{ marginTop: 10, width: '90%'}}
          renderItem={({ item }) =>
             <Card  >
               <Card.Content >
                 <Card.Title
                 
-                 title={item.address}
-                 subtitle={item.city}
+                 title={item.address + " " + item.city}
+                //  subtitle={item.city}
                  right={(props) => (
                     <IconButton
                       {...props}
