@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Bar from './src/Bar';
+import Places from './src/Places';
 
 export default function App() {
   return (
@@ -10,7 +12,8 @@ export default function App() {
         <StatusBar style="light" />
         <View style={styles.container}>
           <Bar />
-          <Text>Open up App.js to start working on your app!</Text>
+          <Places/>
+          
           <StatusBar style="auto" />
         </View>
       </SafeAreaView>
