@@ -4,6 +4,7 @@ import { PaperProvider } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Bar from './src/Bar';
 import Places from './src/Places';
+import Map from './src/Map';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -19,7 +20,10 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
           <StatusBar style="light" />
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={({ navigation, route }) => ({
+              header: (props) => <Bar {...props} navigation={navigation} />, // Lisää AppBar jokaiselle näytölle
+            })}
+            >
               <Stack.Screen name="Places" component={Places} options={{title: "palces "}} />
               <Stack.Screen name="Map" component={Map} options={{title: "map "}} />
             </Stack.Navigator>
