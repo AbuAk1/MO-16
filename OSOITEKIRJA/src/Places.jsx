@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FlatList } from 'react-native';
 import { TextInput, Button, Card , IconButton} from 'react-native-paper'
 import { useState } from 'react';
+import { useDatabase } from './db';
+
+
 
 function Places({navigation}) {
     const [address, setAddress] = useState("");
@@ -15,7 +18,9 @@ function Places({navigation}) {
         console.log("poista", address);
     }
     
-
+    const { dbData } = useDatabase();     
+    console.log(dbData);
+ 
   return (
     <>
     <TextInput

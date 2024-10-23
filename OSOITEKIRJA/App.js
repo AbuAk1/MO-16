@@ -7,7 +7,7 @@ import Places from './src/Places';
 import Map from './src/Map';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { DatabaseProvider } from './src/db';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +17,7 @@ export default function App() {
 
   return (
     <PaperProvider>
+       <DatabaseProvider>
       <NavigationContainer>
         <SafeAreaView style={styles.container}>
           <StatusBar style="light" />
@@ -30,6 +31,7 @@ export default function App() {
             <StatusBar style="auto" />
         </SafeAreaView>
       </NavigationContainer>
+      </DatabaseProvider>
     </PaperProvider>
   );
 }
