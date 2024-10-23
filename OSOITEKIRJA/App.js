@@ -18,10 +18,10 @@ export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+        <SafeAreaView style={styles.container}>
           <StatusBar style="light" />
             <Stack.Navigator screenOptions={({ navigation, route }) => ({
-              header: (props) => <Bar {...props} navigation={navigation} />, // Lisää AppBar jokaiselle näytölle
+              header: (props) => <Bar {...props} navigation={navigation} />,
             })}
             >
               <Stack.Screen name="Places" component={Places} options={{title: "palces "}} />
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
