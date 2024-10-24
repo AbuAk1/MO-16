@@ -1,62 +1,68 @@
 import React, { useEffect } from 'react'
-import { FlatList, TouchableOpacity } from 'react-native';
-import { TextInput, Button, Card , IconButton} from 'react-native-paper'
+import { FlatList, TouchableOpacity, View, Text } from 'react-native';
+import { TextInput, Button, Card, IconButton } from 'react-native-paper'
 import { useState } from 'react';
-import { useDatabase, saveItem , deleteItem } from './db';
+import { useDatabase, saveItem, deleteItem } from './db';
 
 
 
-function Places({navigation}) {
+function Places({ navigation }) {
 
-  const { dbData, setDbData } = useDatabase();  
-    const [address, setAddress] = useState("");
-    
-    const handleSave= () => {    
-        saveItem(address, address, setDbData);
-    }
+  const { dbData, setDbData } = useDatabase();
+  const [address, setAddress] = useState("");
 
-    const handleDelete = (id) => {
-        console.log("poista", id);
-        deleteItem(id, setDbData);
-    }
-    
- 
+  const handleSave = () => {
+    saveItem(address, address, setDbData);
+  }
+
+  const handleDelete = (id) => {
+    console.log("poista", id);
+    deleteItem(id, setDbData);
+  }
+
+
   return (
     <>
-    <TextInput
-        style={{ width: '90%', marginBottom: 10 }} 
+      <TextInput
+        style={{ width: '90%', marginBottom: 10 }}
         label="PLACEFINDER"
         value={address}
         onChangeText={text => setAddress(text)}
-    />
-    <Button mode="contained" icon="content-save" title="Save" onPress={handleSave} >Save</Button>
+      />
+      <Button mode="contained" icon="content-save" title="Save" onPress={handleSave} >Save</Button>
 
-    <FlatList
-        style={{ marginTop: 10, width: '90%'}}
-         renderItem={({ item }) =>
-          <TouchableOpacity onLongPress={()=> handleDelete(item.id)}>
+      <FlatList
+        style={{ marginTop: 10, width: '90%' }}
+        renderItem={({ item }) =>
+          <TouchableOpacity onLongPress={() => handleDelete(item.id)}>
             <Card  >
               <Card.Content >
                 <Card.Title
-                 title={item.address + " " + item.city}
-                 right={(props) => (
-                    <IconButton
-                      {...props}
-                      iconColor="red"
-                      icon="trash-can"
-                        onPress={()=> navigation.navigate("Map")}
+                  title={item.address + " " + item.city}
+                  right={(props) => (
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <Text variant="bodyMedium">Show on map</Text>
+                      <IconButton
+                        {...props}
+                        iconColor="grey"
+                        mode="outlined"
+                        icon="arrow-right"
+                        onPress={() => navigation.navigate("Map")}
                       />
-                 )}/>
-                 
+
+                    </View>
+                  )}
+                />
+
               </Card.Content >
             </Card >
           </TouchableOpacity>
-          }
-          data={dbData} />
-    
+        }
+        data={dbData} />
+
 
     </>
-    
+
   )
 }
 
