@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Card , IconButton} from 'react-native-paper'
 import { useState } from 'react';
 import { useDatabase, saveItem } from './db';
@@ -11,17 +11,18 @@ function Places({navigation}) {
     const [testAddress, setTestAddress] = useState([{id: 1, address: "Asemakuja 2", city:"Espoo"},{id: 2, address: "Mannerheimintie 10", city:"Helsinki"}]);
 
     const handleSave= () => {
-        console.log("Tallenna");
-        console.log(testAddress[1].address);
+        // console.log("Tallenna");
+        // console.log(testAddress[1].address);
         saveItem(address, address);
-        console.log(dbData);
+        // console.log(dbData);
     }
-    const handleDelete = (address) => {
-        console.log("poista", address);
+    const handleDelete = () => {
+        console.log("poista");
     }
     
     const { dbData } = useDatabase();     
     // console.log(dbData);
+    // console.log(testAddress)
  
   return (
     <>
@@ -35,7 +36,9 @@ function Places({navigation}) {
 
     <FlatList
         style={{ marginTop: 10, width: '90%'}}
+      
          renderItem={({ item }) =>
+          <TouchableOpacity onLongPress={handleDelete}>
             <Card  >
               <Card.Content >
                 <Card.Title
@@ -45,6 +48,7 @@ function Places({navigation}) {
                  right={(props) => (
                     <IconButton
                       {...props}
+                      // onLongPress={handleDelete}
                       iconColor="red"
                       icon="trash-can"
                     //   onPress={() => handleDelete(address)}
@@ -55,8 +59,9 @@ function Places({navigation}) {
                  
               </Card.Content >
             </Card >
+          </TouchableOpacity>
           }
-          data={testAddress} />
+          data={dbData} />
     
 
     </>
