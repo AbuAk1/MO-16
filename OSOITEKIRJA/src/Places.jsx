@@ -47,7 +47,7 @@ function Places({ navigation }) {
                         iconColor="grey"
                         mode="outlined"
                         icon="arrow-right"
-                        onPress={() => navigation.navigate("Map")}
+                        onPress={() => navigation.navigate("Map", { address: item.address })}
                       />
 
                     </View>

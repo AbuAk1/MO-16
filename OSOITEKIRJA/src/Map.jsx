@@ -4,24 +4,27 @@ import { View, Text } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useState, useEffect } from 'react';
 
-function Map({ navigation }) {
+function Map({ navigation , route }) {
 
     const [data, setData] = useState(null);
+    const { address } = route.params;
 
     //https://geocode.maps.co/search?q=address&api_key=api_key
     const EXPO_PUBLIC_API_KEY = process.env.EXPO_PUBLIC_API_KEY;
-    const testAddress = "Mannerheimintie 10"
+    // const testAddress = "Mannerheimintie 10"
+
 
     useEffect(() => {
 
+        console.log(address)
         getAddressRegion();
-        console.log(data)
+        // console.log(data)
 
     }, [])
 
     const getAddressRegion = async () => {
         try {
-            const response = await fetch(`https://geocode.maps.co/search?q=${testAddress}&api_key=${EXPO_PUBLIC_API_KEY}`);
+            const response = await fetch(`https://geocode.maps.co/search?q=${address}&api_key=${EXPO_PUBLIC_API_KEY}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -68,9 +71,9 @@ function Map({ navigation }) {
             <Button mode="contained" onPress={() => navigation.navigate('Places')}>
                 Go back
             </Button>
-            <Button mode="contained" onPress={getAddressRegion}>
+            {/* <Button mode="contained" onPress={getAddressRegion}>
                 test fetch
-            </Button>
+            </Button> */}
 
 
             <MapView
