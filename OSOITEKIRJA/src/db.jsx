@@ -32,6 +32,18 @@ export const setupDatabase = async () => {
   }
 };
 
+export const saveItem = async (address, city) => {
+  try {
+    if(!db) {
+      db = await openDatabaseAsync(); 
+    }
+    await db.runAsync('INSERT INTO address (address, city) VALUES (?, ?)', [address, city]);
+    // Todo: update the course list
+  } catch (error) {
+    console.error('Could not add item', error);
+  }
+};
+
 
 
 //kontekstin luominen places ja maps komponenttia varten

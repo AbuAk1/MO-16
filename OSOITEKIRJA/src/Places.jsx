@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { FlatList } from 'react-native';
 import { TextInput, Button, Card , IconButton} from 'react-native-paper'
 import { useState } from 'react';
-import { useDatabase } from './db';
+import { useDatabase, saveItem } from './db';
 
 
 
@@ -13,13 +13,15 @@ function Places({navigation}) {
     const handleSave= () => {
         console.log("Tallenna");
         console.log(testAddress[1].address);
+        saveItem(address, address);
+        console.log(dbData);
     }
     const handleDelete = (address) => {
         console.log("poista", address);
     }
     
     const { dbData } = useDatabase();     
-    console.log(dbData);
+    // console.log(dbData);
  
   return (
     <>
