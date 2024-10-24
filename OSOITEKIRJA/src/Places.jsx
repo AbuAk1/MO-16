@@ -7,22 +7,17 @@ import { useDatabase, saveItem , deleteItem } from './db';
 
 
 function Places({navigation}) {
-    const { dbData, setDbData } = useDatabase();  
-    const [addressList, setAddressList] = useState([]);
-    const [address, setAddress] = useState("");
-    // const [testAddress, setTestAddress] = useState([{id: 1, address: "Asemakuja 2", city:"Espoo"},{id: 2, address: "Mannerheimintie 10", city:"Helsinki"}]);
 
-    const handleSave= () => {
-        // console.log("Tallenna");
-        // console.log(testAddress[1].address);
+  const { dbData, setDbData } = useDatabase();  
+    const [address, setAddress] = useState("");
+    
+    const handleSave= () => {    
         saveItem(address, address, setDbData);
-        // setAddressList(updateList());
-        // console.log(dbData);
     }
+
     const handleDelete = (id) => {
         console.log("poista", id);
         deleteItem(id, setDbData);
-        // setAddressList(updateList());
     }
     
  
@@ -38,26 +33,19 @@ function Places({navigation}) {
 
     <FlatList
         style={{ marginTop: 10, width: '90%'}}
-      
-        // keyExtractor={(item) => item.id.toString()}
          renderItem={({ item }) =>
           <TouchableOpacity onLongPress={()=> handleDelete(item.id)}>
             <Card  >
               <Card.Content >
                 <Card.Title
-                
                  title={item.address + " " + item.city}
-                //  subtitle={item.city}
                  right={(props) => (
                     <IconButton
                       {...props}
-                      // onLongPress={handleDelete}
                       iconColor="red"
                       icon="trash-can"
-                    //   onPress={() => handleDelete(address)}
                         onPress={()=> navigation.navigate("Map")}
                       />
-                    
                  )}/>
                  
               </Card.Content >
