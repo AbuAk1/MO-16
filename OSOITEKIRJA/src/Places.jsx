@@ -13,6 +13,7 @@ function Places({ navigation }) {
 
   const handleSave = () => {
     saveItem(address, address, setDbData);
+    setAddress("");
   }
 
   const handleDelete = (id) => {
@@ -38,7 +39,7 @@ function Places({ navigation }) {
             <Card  >
               <Card.Content >
                 <Card.Title
-                  title={item.address + " " + item.city}
+                  title={item.address}
                   right={(props) => (
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                       <Text variant="bodyMedium">Show on map</Text>

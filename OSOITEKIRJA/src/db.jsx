@@ -22,9 +22,9 @@ export const setupDatabase = async () => {
         address TEXT NOT NULL,
         city TEXT NOT NULL
       );
-      INSERT INTO address (address, city) VALUES ('Mannerheimintie 10', 'Helsinki');
-      INSERT INTO address (address, city) VALUES ('Asemakuja 2', 'Espoo');
-      INSERT INTO address (address, city) VALUES ('Ratakatu 15', 'Tampere');
+      INSERT INTO address (address, city) VALUES ('Mannerheimintie 10 Helsinki', 'Helsinki');
+      INSERT INTO address (address, city) VALUES ('Asemakuja 2 Espoo', 'Espoo');
+      INSERT INTO address (address, city) VALUES ('Ratakatu 15 Tampere', 'Tampere');
     `);
     console.log('Address table created and test data inserted successfully');
   } catch (error) {
@@ -68,20 +68,6 @@ export const deleteItem = async (id,setDbData) => {
     console.error('Could not delete item', error);
   }
 }
-
-// //päivitä ja hae tiedot tietokannasta
-// export const updateList = async () => {
-//   try {
-//     if(!db) {
-//       db = await openDatabaseAsync(); 
-//     }
-//     const list = await db.getAllAsync('SELECT * from address');
-//     // setCourses(list);
-//     return list;
-//   } catch (error) {
-//     console.error('Could not get items', error);
-//   }
-// }
 
 
 
