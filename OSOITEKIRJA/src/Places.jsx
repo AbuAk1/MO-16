@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { FlatList, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Card , IconButton} from 'react-native-paper'
 import { useState } from 'react';
-import { useDatabase, saveItem } from './db';
+import { useDatabase, saveItem , deleteItem} from './db';
 
 
 
@@ -16,8 +16,9 @@ function Places({navigation}) {
         saveItem(address, address);
         // console.log(dbData);
     }
-    const handleDelete = () => {
-        console.log("poista");
+    const handleDelete = (id) => {
+        console.log("poista", id);
+        deleteItem(id);
     }
     
     const { dbData } = useDatabase();     
@@ -37,8 +38,9 @@ function Places({navigation}) {
     <FlatList
         style={{ marginTop: 10, width: '90%'}}
       
+        // keyExtractor={(item) => item.id.toString()}
          renderItem={({ item }) =>
-          <TouchableOpacity onLongPress={handleDelete}>
+          <TouchableOpacity onLongPress={()=> handleDelete(item.id)}>
             <Card  >
               <Card.Content >
                 <Card.Title

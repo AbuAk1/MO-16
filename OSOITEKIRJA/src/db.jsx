@@ -32,6 +32,7 @@ export const setupDatabase = async () => {
   }
 };
 
+//Tallenna osoite
 export const saveItem = async (address, city) => {
   try {
     if(!db) {
@@ -43,6 +44,20 @@ export const saveItem = async (address, city) => {
     console.error('Could not add item', error);
   }
 };
+
+//poista osoite id:llä
+export const deleteItem = async (id) => {
+  try {
+    if(!db) {
+      db = await openDatabaseAsync(); 
+    }
+    await db.runAsync('DELETE FROM address WHERE id=?', id);
+    
+  }
+  catch (error) {
+    console.error('Could not delete item', error);
+  }
+}
 
 
 
