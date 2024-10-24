@@ -66,11 +66,11 @@ function Map({ navigation , route }) {
 
 
     return (
-        <View>
-            <Text>Map</Text>
-            <Button mode="contained" onPress={() => navigation.navigate('Places')}>
+        <View style={{flex:1}}>
+            {/* <Text>Map</Text> */}
+            {/* <Button mode="contained" onPress={() => navigation.navigate('Places')}>
                 Go back
-            </Button>
+            </Button> */}
             {/* <Button mode="contained" onPress={getAddressRegion}>
                 test fetch
             </Button> */}
@@ -90,6 +90,9 @@ function Map({ navigation , route }) {
                     title='Haettu osoite'
                 />
             </MapView>
+
+            {/* <Button title="Show">show</Button> */}
+            
 
         </View>
     )

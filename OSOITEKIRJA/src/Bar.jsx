@@ -5,10 +5,10 @@ export default function Bar({ navigation, previous}) {
 
   return (
     <Appbar.Header>
-      {previous ? <Appbar.BackAction onPress={() => navigation.goBack()} /> : null}
+      {previous && <Appbar.BackAction onPress={() => navigation.goBack()} /> }
       {/* <Appbar.BackAction onPress={() => {() => navigation.goBack()}} /> */}
 
-        <Appbar.Content title="My Places"/>
+        {!previous ?<Appbar.Content title="My Places"/> :  <Appbar.Content title="Map"/>}
     </Appbar.Header>
   )
 }

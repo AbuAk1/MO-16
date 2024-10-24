@@ -22,11 +22,11 @@ export default function App() {
         <SafeAreaView style={styles.container}>
           <StatusBar style="light" />
             <Stack.Navigator screenOptions={({ navigation, route }) => ({
-              header: (props) => <Bar {...props} navigation={navigation} />,
+              header: (props) => <Bar {...props} navigation={navigation} previous={route.name !=="Places"} />,
             })}
             >
-              <Stack.Screen name="Places" component={Places} options={{title: "palces "}} />
-              <Stack.Screen name="Map" component={Map} options={{title: "map "}} />
+              <Stack.Screen name="Places" component={Places} options={{title: "Places "}} />
+              <Stack.Screen name="Map" component={Map} options={{title: "Map "}} />
             </Stack.Navigator>
             <StatusBar style="auto" />
         </SafeAreaView>
