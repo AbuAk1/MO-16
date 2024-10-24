@@ -33,31 +33,55 @@ export const setupDatabase = async () => {
 };
 
 //Tallenna osoite
-export const saveItem = async (address, city) => {
+export const saveItem = async (address, city,setDbData) => {
   try {
+    //tarkista onko db ja jos ei niin avaa
     if(!db) {
       db = await openDatabaseAsync(); 
     }
+    //tallenna uusi osoite tietokantaan
     await db.runAsync('INSERT INTO address (address, city) VALUES (?, ?)', [address, city]);
-    // Todo: update the course list
+    //päivitä tietokanta
+    const allRows = await db.getAllAsync('SELECT * FROM address');
+    setDbData(allRows);
+    
   } catch (error) {
     console.error('Could not add item', error);
   }
 };
 
 //poista osoite id:llä
-export const deleteItem = async (id) => {
+export const deleteItem = async (id,setDbData) => {
   try {
+    //tarkista onko db ja jos ei niin avaa
     if(!db) {
       db = await openDatabaseAsync(); 
     }
+    //poista id:llä tietokannasta
     await db.runAsync('DELETE FROM address WHERE id=?', id);
+    //päivitä tietokanta
+    const allRows = await db.getAllAsync('SELECT * FROM address');
+    setDbData(allRows);
     
   }
   catch (error) {
     console.error('Could not delete item', error);
   }
 }
+
+// //päivitä ja hae tiedot tietokannasta
+// export const updateList = async () => {
+//   try {
+//     if(!db) {
+//       db = await openDatabaseAsync(); 
+//     }
+//     const list = await db.getAllAsync('SELECT * from address');
+//     // setCourses(list);
+//     return list;
+//   } catch (error) {
+//     console.error('Could not get items', error);
+//   }
+// }
 
 
 
@@ -67,6 +91,7 @@ const DatabaseContext = createContext();
 //Provider
 //Tiedot tietokannasta dbData muuttujaan ja alustus ensimmäisellä kerralla app.jsx lisätessä
 export const DatabaseProvider = ({ children }) => {
+  //dbData sisältää taulun tiedot ja sitä käytetään places.jsx komponentissa flatlistassa
   const [dbData, setDbData] = useState([]);
 
   useEffect(() => {
